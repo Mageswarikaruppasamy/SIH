@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIS Report Generator</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- html2pdf.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>MIS Report Generator</h1>
+    </header>
+
+    <div class="container">
+
+        <!-- Filters -->
+        <div class="filters">
+            <div>
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate">
+            </div>
+            <div>
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate">
+            </div>
+            <div>
+                <label for="truckSelect">Truck ID:</label>
+                <input type="text" id="truckSelect">
+            </div>
+            <div>
+                <label for="vehicleNumber">Vehicle Number:</label>
+                <input type="text" id="vehicleNumber" placeholder="Enter Vehicle Number">
+            </div>
+            <div>
+                <label for="driverSelect">Driver Name:</label>
+                <input type="tex" id="driverSelect">
+            </div>
+            <div>
+                <label for="routeSelect">Route:</label>
+                <input type="tex" id="routeSelect">
+            </div>
+            <div>
+                <label for="3plPartner">3PL Partner:</label>
+                <input type="checkbox" id="3plPartner">
+            </div>
+            <div>
+                <button id="generateReportBtn">Generate Report</button>
+            </div>
+        </div>
+
+        <!-- Report Section -->
+        <div class="report-section" id="report">
+            <div class="report-header">
+                <h2>MIS Report</h2>
+                <button id="downloadPdfBtn">Download PDF</button>
+            </div>
+
+            <!-- 2-Row by 3-Column Grid -->
+            <div class="report-grid">
+                <!-- Row 1 -->
+                <div class="report-card">
+                    <h3>Truck ID</h3>
+                    <p id="reportTruckID">-</p>
+                </div>
+                <div class="report-card">
+                    <h3>Driver Name</h3>
+                    <p id="reportDriverName">-</p>
+                </div>
+                <div class="report-card">
+                    <h3>Load Details</h3>
+                    <p id="reportLoadDetails">-</p>
+                </div>
+                <!-- Row 2 -->
+                <div class="report-card">
+                    <h3>Distance Traveled (km)</h3>
+                    <p id="reportDistance">-</p>
+                </div>
+                <div class="report-card">
+                    <h3>Estimated Time of Arrival (ETA)</h3>
+                    <p id="reportETA">-</p>
+                </div>
+                <div class="report-card">
+                    <h3>Destination</h3>
+                    <p id="reportDestination">-</p>
+                </div>
+            </div>
+
+            <!-- Additional Detailed Metrics -->
+            <div class="report-grid">
+                <!-- Operational Metrics -->
+                <div class="report-card">
+                    <h3>Fuel Consumption (Liters)</h3>
+                    <p id="reportFuelConsumption">-</p>
+                </div>
+                <div class="report-card">
+                    <h3>Emissions Data (CO2 kg)</h3>
+                    <p id="reportEmissions">-</p>
+                </div>
+                <div class="report-card">
+                    <h3>Maintenance Status</h3>
+                    <p id="reportMaintenance">-</p>
+                </div>
+                <!-- Route Information -->
+                <div class="report-card">
+                    <h3>Geofenced Areas Status</h3>
+                    <p id="reportGeofences">-</p>
+                </div>
+                <div class="report-card">
+                    <h3>Detours Taken</h3>
+                    <p id="reportDetours">-</p>
+                </div>
+                <div class="report-card">
+                    <h3>API Interactions with 3PL</h3>
+                    <p id="reportAPIInteractions">-</p>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts">
+                <div class="chart-container">
+                    <canvas id="fuelConsumptionChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="delayReasonsChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="capacityUtilChart"></canvas>
+                </div>
+            </div>
+
+
+    </div>
+
+    <!-- Custom JavaScript -->
+     <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truck Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f9fc;
+      }
+      .menu {
+        background-color: #2c3e50; /* Darker shade for elegance */
+        width: 16%;
+        height: 100vh;
+        position: fixed;
+        color: white;
+        padding: 15px;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        transition: 0.3s ease-in-out;
+      }
+      
+      .menu h2 {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: #ecf0f1; /* Lighter shade for contrast */
+      }
+      
+      .menu ul {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .menu ul li {
+        margin: 10px 0;
+        font-size: 16px; /* Slightly larger for better readability */
+      }
+      
+      .menu ul li a {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-radius: 5px;
+        transition: 0.3s;
+      }
+      
+      .menu ul li a:hover {
+        background-color: #3498db; /* Attractive blue hover effect */
+        color: #fff;
+        transform: scale(1.05); /* Slight zoom effect on hover */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      }
+      
+      .menu ul li a i {
+        margin-right: 10px; /* Space for icons */
+        color: #e9e7cc; /* Eye-catching icon color */
+      }
+      
+      .menu ul li a.active {
+        background-color: #5d6179; /* Highlighted active link */
+        color: #fff;
+      }
+      .navbar {
+        background-color: #2c3e50;
+        color: white;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .navbar h1 {
+        flex: 1;
+        margin: 7px;
+        font-size: 20px;
+        text-align: center;
+        flex-grow: 1;
+      }
+      .search-container {
+        position: relative;
+      }
+      .search-container input[type="text"] {
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        width: 250px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        font-size: 14px;
+      }
+      .search-container i {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        color: #999;
+      }
+      .content {
+        margin-left: 16%;
+        padding: 20px;
+      }
+      .table-container {
+        margin-top: 20px;
+      }
+      .table-container table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .table-container th, .table-container td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        background-color: #fff;
+      }
+      .table-container th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+        color: #333;
+      }
+      .table-container tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      .table-container tr:hover {
+        background-color: #f1f1f1;
+      }
+      .table-container td {
+        border-right: 1px solid #ddd;
+      }
+      .table-container td:last-child {
+        border-right: none;
+      }
+      .table-container .header-row {
+        background-color: #3498db;
+        color: white;
+        font-size: 16px;
+      }
+      .table-container .header-row th {
+        padding: 15px;
+        text-align: center;
+      }
+      .table-container .data-row td {
+        text-align: center;
+        font-size: 14px;
+      }
+      .title {
+        flex: 1;
+        padding-left: 350px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .view-icon {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Menu bar -->
+     <!-- Menu bar -->
+    <div class="menu">
+      <ul>
+        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="truckdetails.html" class="active"><i class="fas fa-truck"></i> Truck Details</a></li>
+        <li><a href="driver.html"><i class="fas fa-id-card"></i> Driver Info</a></li>
+        <li><a href="index.html"><i class="fas fa-map-marker-alt"></i> Live Tracking</a></li>
+        <li><a href="#"><i class="fas fa-route"></i> Geofences</a></li>
+    
+        <!-- 3PL Partners with Bookings as collapsible -->
+        <li>
+          <a href="#collapseBookings" data-bs-toggle="collapse" aria-expanded="false"><i class="fas fa-people-carry"></i> 3PL Partners</a>
+          <ul id="collapseBookings" class="collapse list-unstyled">
+            <li><a href="#"><i class="fas fa-calendar-alt"></i> Bookings</a></li>
+          </ul>
+        </li>
+    
+        <!-- New Schedules Menu Item -->
+        <li><a href="#"><i class="fas fa-calendar-check"></i> Schedules</a></li>
+    
+        <li><a href="report.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+      </ul>
+    </div>
+    
+
+
+    
+    <!-- Navbar -->
+    <div class="navbar">
+      <h1 class="title">DASHBOARD</h1>
+      <div class="search-container">
+        <input type="text" placeholder="Search...">
+        <i class="fas fa-search"></i>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content">
+      <h3>Truck Details</h3>
+
+      <!-- Truck Details Table -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr class="header-row">
+              <th>Truck ID</th>
+              <th>Vehicle Number</th>
+              <th>Model</th>
+              <th>Total Capacity (Tons)</th>
+              <th>Route</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="data-row">
+              <td>2013081234</td>
+              <td>GJ-01-AB-1234</td>
+              <td>Freightliner Cascadia</td>
+              <td>12</td>
+              <td>Ahmedabad to Jaipur</td>
+              <td><i class="fas fa-eye view-icon" data-bs-toggle="modal" data-bs-target="#truckModal1"></i></td>
+            </tr>
+            <tr class="data-row">
+              <td>2008095678</td>
+              <td>GJ-01-CD-5678</td>
+              <td>Volvo FH16</td>
+              <td>10</td>
+              <td>Surat to Delhi</td>
+              <td><i class="fas fa-eye view-icon" data-bs-toggle="modal" data-bs-target="#truckModal2"></i></td>
+            </tr>
+            <tr class="data-row">
+              <td>2020019012</td>
+              <td>GJ-01-EF-9012</td>
+              <td>Kenworth T680</td>
+              <td>9</td>
+              <td>Mumbai to Pune</td>
+              <td><i class="fas fa-eye view-icon" data-bs-toggle="modal" data-bs-target="#truckModal3"></i></td>
+            </tr>
+            <tr class="data-row">
+                <td>2018053456</td>
+                <td>GJ-01-GH-3456</td>
+                <td>Peterbilt 579</td>
+                <td>11</td>
+                <td>Bangalore to Hyderabad</td> <!-- New Route Data -->
+                <td><i class="fas fa-eye view-icon" data-bs-toggle="modal" data-bs-target="#truckModal4"></i></td>
+              </tr>
+              <tr class="data-row">
+                <td>1999097890</td>
+                <td>GJ-01-IJ-7890</td>
+                <td>International LT</td>
+                <td>7</td>
+                <td>Chennai to Coimbatore</td> <!-- New Route Data -->
+                <td><i class="fas fa-eye view-icon" data-bs-toggle="modal" data-bs-target="#truckModal5"></i></td> <!-- New View Icon -->
+              </tr>
+              <tr class="data-row">
+                <td>2015031234</td>
+                <td>GJ-01-KL-1234</td>
+                <td>Mack Anthem</td>
+                <td>14</td>
+                <td>Kolkata to Bhubaneswar</td> <!-- New Route Data -->
+                <td><i class="fas fa-eye view-icon" data-bs-toggle="modal" data-bs-target="#truckModal6"></i></td> <!-- New View Icon -->
+              </tr>
+              <tr class="data-row">
+                <td>2010105678</td>
+                <td>GJ-01-MN-5678</td>
+                <td>Scania R450</td>
+                <td>10</td>
+                <td>Indore to Bhopal</td> <!-- New Route Data -->
+                <td><i class="fas fa-eye view-icon" data-bs-toggle="modal" data-bs-target="#truckModal7"></i></td> <!-- New View Icon -->
+              </tr>
+              <tr class="data-row">
+                <td>2012122345</td>
+                <td>GJ-02-OP-2345</td>
+                <td>Tata Prima</td>
+                <td>13</td>
+                <td>Lucknow to Kanpur</td>
+                <td><i class="fas fa-eye view-icon" data-bs-toggle="modal" data-bs-target="#truckModal8"></i></td> <!-- New View Icon -->
+              </tr>
+              <tr class="data-row">
+                <td>2009016789</td>
+                <td>GJ-02-QR-6789</td>
+                <td>Ashok Leyland</td>
+                <td>8</td>
+                <td>Delhi to Agra</td>
+                <td><i class="fas fa-eye view-icon" data-bs-toggle="modal" data-bs-target="#truckModal9"></i></td> <!-- New View Icon -->
+              </tr>
+              <tr class="data-row">
+                <td>2016069101</td>
+                <td>GJ-02-ST-9101</td>
+                <td>Mahindra Blazo</td>
+                <td>11</td>
+                <td>Patna to Ranchi</td>
+                <td><i class="fas fa-eye view-icon" data-bs-toggle="modal" data-bs-target="#truckModa20"></i></td> <!-- New View Icon -->
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Modal for Truck 1 -->
+    <div class="modal fade" id="truckModal1" tabindex="-1" aria-labelledby="truckModal1Label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="truckModal1Label">Truck Details - GJ-01-AB-1234</h5>
+          </div>
+          <div class="modal-body">
+                <p><strong>Truck ID:</strong> 2013081234</p>
+                <p><strong>Vehicle Number:</strong> GJ-01-AB-1234</p>
+                <p><strong>Model:</strong> Freightliner Cascadia</p>
+                <p><strong>Chassis Number:</strong> 1FUJGLDR9CSBU1234</p>
+                <p><strong>Engine Number:</strong> 60R123456789</p>
+                <p><strong>Manufactured By:</strong> Daimler Trucks</p>
+                <p><strong>Manufactured Year:</strong> 2013</p>
+                <p><strong>Total Capacity:</strong> 12 Tons</p>
+                <p><strong>Status:</strong> Active</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Edit</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Truck 2 -->
+    <div class="modal fade" id="truckModal2" tabindex="-1" aria-labelledby="truckModal2Label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="truckModal2Label">Truck Details - GJ-01-CD-5678</h5>
+          </div>
+          <div class="modal-body">
+            <p><strong>Truck ID:</strong> 2008095678</p>
+            <p><strong>Vehicle Number:</strong> GJ-01-CD-5678</p>
+            <p><strong>Model:</strong> Volvo FH16</p>
+            <p><strong>Chassis Number:</strong> YV2RT60A8CB567890</p>
+            <p><strong>Engine Number:</strong> D16E123456</p>
+            <p><strong>Manufactured By:</strong> Volvo Trucks</p>
+            <p><strong>Manufactured Year:</strong> 2008</p>
+            <p><strong>Total Capacity:</strong> 10 Tons</p>
+            <p><strong>Status:</strong> Active</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Edit</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
